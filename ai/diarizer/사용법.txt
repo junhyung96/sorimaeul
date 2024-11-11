@@ -1,0 +1,23 @@
+1. 가상환경 설정
+
+a. app.py, requirements.txt 파일이 있는 위치에서 cmd 열기
+b. 가상환경 생성
+    > python -m venv {가상환경명}
+c. 가상환경 활성화
+    > {가상환경명}\Scripts\activate
+d. 환경 설정
+    > pip install -r requirements.txt
+e. 가상환경 종료
+    > deactivate
+
+
+2. 사용
+
+a. 가상환경 활성화
+b. 실행
+    > python app.py {유튜브주소} {제목}
+c. ./youtube/{name} 경로 확인
+    - {name}_origin.mp4 : 원본 영상
+    - {name}_video.mp4 : 영상에서 목소리 제거
+    - {name}_voice.wav : 목소리만 추출한 오디오
+e. {name}_voice.wav 파일을 화자별로 분리해서 정리

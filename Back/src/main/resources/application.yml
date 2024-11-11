@@ -1,0 +1,122 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /api
+
+
+spring:
+  # DataBase Settings : hikariCP : https://github.com/brettwooldridge/HikariCP
+  datasource:
+    url: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: 
+    password: 
+    pool-name: Hikari Connection Pool
+    # hikariCP property setting
+    maximum-pool-size: 10
+    connection-timeout: 5000
+    connection-init-sql: SELECT 1
+    idle-timeout: 600000
+    max-lifetime: 1800000
+    auto-commit: true
+  security:
+    user:
+      name: admin
+      password: admin
+    # OAuth 설정
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 
+            client-secret: 
+            redirect-uri: 
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            client_name: kakao
+          google:
+            client-id: 
+            client-secret: 
+            redirect-uri: 
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+  jpa:
+    open-in-view: false
+
+
+jwt:
+  token:
+    secret-key: 
+  access-token:
+    expire-length: 1800000
+  refresh-token:
+    expire-length: 1209600000
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+
+
+# Multipart File Upload Setting
+file:
+  multipart:
+    maxUploadSize: 1000000
+    maxUploadSizePerFile: 1000000
+
+
+## Swagger setting
+springdoc:
+  packages-to-scan: com.usagi.sorimaeul.api.controller
+  swagger-ui:
+    path: /api-docs
+    groups-order: DESC
+    tags-sorter: alpha
+    operations-sorter: alpha
+    disabled-swagger-default-url: true
+    display-request-duration: true
+  api-docs:
+    path: /api-docs/json
+    groups:
+      enabled: true
+  show-actuator: true
+  cache:
+    disabled: true
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+
+
+# log level Setting
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        root: debug
+        web: debug
+    com:
+      sorimaeul: debug
+    zaxxer:
+      hikari:
+        pool:
+          HikariPool: debug
+
+# S3 Bucket
+cloud:
+  aws:
+    s3:
+      bucket: 
+    region:
+      static: 
+    credentials:
+      access-key: 
+      secret-key: 
+    stack:
+      auto: false
